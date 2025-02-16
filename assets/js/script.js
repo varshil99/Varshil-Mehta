@@ -86,6 +86,7 @@ async function fetchData(type = "skills") {
         :
         response = await fetch("./projects/projects.json")
     const data = await response.json();
+    console.log(data);
     return data;
 }
 
@@ -249,3 +250,68 @@ srtop.reveal('.experience .timeline .container', { interval: 400 });
 /* SCROLL CONTACT */
 srtop.reveal('.contact .container', { delay: 400 });
 srtop.reveal('.contact .container .form-group', { delay: 400 });
+
+
+
+async function fetchData(type = "skills") {
+    let response;
+    type === "skills" 
+        ? response = await fetch("skills.json")
+        : response = await fetch("./projects/projects.json");
+
+    const data = await response.json();
+    return data;
+}
+
+function showSkills(skills) {
+    let programmingContainer = document.getElementById("programmingSkills");
+    let databasesContainer = document.getElementById("databasesSkills");
+    let cloudContainer = document.getElementById("cloudSkills");
+
+    let programmingHTML = "";
+    let databasesHTML = "";
+    let cloudHTML = "";
+
+    skills.forEach(skill => {
+        let skillHTML = `
+        <div class="bar">
+            <div class="info">
+                <img src=${skill.icon} alt="skill" />
+                <span>${skill.name}</span>
+            </div>
+        </div>`;
+
+        if (skill.category === "programming") {
+            programmingHTML += skillHTML;
+        } else if (skill.category === "databases") {
+            databasesHTML += skillHTML;
+        } else if (skill.category === "cloud") {
+            cloudHTML += skillHTML;
+        }
+    });
+
+    programmingContainer.innerHTML = programmingHTML;
+    databasesContainer.innerHTML = databasesHTML;
+    cloudContainer.innerHTML = cloudHTML;
+}
+
+// Fetch and display skills
+fetchData().then(data => {
+    showSkills(data);
+});
+
+// Tab switching functionality
+document.addEventListener("DOMContentLoaded", function () {
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            tabButtons.forEach(btn => btn.classList.remove("active"));
+            tabContents.forEach(content => content.classList.remove("active"));
+
+            this.classList.add("active");
+            document.getElementById(this.dataset.tab).classList.add("active");
+        });
+    });
+});
