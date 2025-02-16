@@ -51,19 +51,22 @@ $(document).ready(function () {
             message: $("textarea[name='message']").val()
         };
 
+        console.log("Form Data:", formData); // Log form data to check
+
         // Ensure all required fields are filled
         if (!formData.name || !formData.email || !formData.message) {
             alert("Please fill out all required fields.");
             return;
         }
 
-        emailjs.send("service_69t2g4u", "template_fpzz251", formData)
+        // Send email using EmailJS
+        emailjs.send("service_69t2g4u", "template_e8vc5ls", formData)
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
                 $("#contact-form")[0].reset(); // Reset form after submission
                 alert("Message sent successfully! ✅");
             }, function (error) {
-                console.log('FAILED...', error);
+                console.log('FAILED...', error); // Log the error to the console
                 alert("Failed to send message ❌. Check the console for details.");
             });
     });
