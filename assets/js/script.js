@@ -73,7 +73,7 @@ $(document).ready(function () {
 
     // Typed.js effect
     var typed = new Typed(".typing-text", {
-        strings: ["frontend development", "backend development", "web designing", "android development", "web development"],
+        strings: ["Data Engineering", "Data Science", "Data Analysis", "Machine Learning", "Data Visualization"],
         loop: true,
         typeSpeed: 50,
         backSpeed: 25,
