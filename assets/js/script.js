@@ -151,15 +151,7 @@ $(document).ready(function () {
         if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
         if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
     }
-// <!-- typed js effect starts -->
-var typed = new Typed(".typing-text", {
-    strings: ["Data Analysis", "Automation", "Database Management", "Cloud Infrastructure", "Visualization"],
-    loop: true,
-    typeSpeed: 50,
-    backSpeed: 25,
-    backDelay: 500,
-});
-// <!-- typed js effect ends -->
+
     /* ===== Scroll Reveal Animation ===== */
     const srtop = ScrollReveal({
         origin: 'top',
