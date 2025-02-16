@@ -51,14 +51,20 @@ $(document).ready(function () {
             message: $("textarea[name='message']").val()
         };
 
-        emailjs.send("service_69t2g4u", "template_xxxxxxx", formData)
+        // Ensure all required fields are filled
+        if (!formData.name || !formData.email || !formData.message) {
+            alert("Please fill out all required fields.");
+            return;
+        }
+
+        emailjs.send("service_69t2g4u", "template_fpzz251", formData)
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
                 $("#contact-form")[0].reset(); // Reset form after submission
                 alert("Message sent successfully! ✅");
             }, function (error) {
                 console.log('FAILED...', error);
-                alert("Failed to send message ❌. Try again later.");
+                alert("Failed to send message ❌. Check the console for details.");
             });
     });
 
